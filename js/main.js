@@ -21,12 +21,15 @@ let  url;
   2.받은 응답코드가 200이 아니라면 (400, 401, 402 등) 받은 에러메세지를 화면에 띄우기*/
 
 
-//함수의 중복부분
+//함수의 중복부분 try catch문   
 const getNews = async () => {
     try{
         let header = new Headers({
-           'x-api-key':'OlUv0q7jdM962bqVqmcuwlRlNrPckSBD0AfnM8-Huko'
-           //'x-api-key':'d658687' //에러값
+            'x-api-key': '5lWBGuMFFmP9A-g8BpKzBP4YAfuS6Qjg0KXVeA76ZDQ'
+            //'x-api-key': '--eJnWS6GXm6gPpaLUg6KWF_33OQvcMu2J7YJ4RgCAY'
+            //'x-api-key':'N-4R6bpwHj0J-8uHKC0teZCX8v6DaD0uNAmUsQCIhmw'
+            //'x-api-key':'OlUv0q7jdM962bqVqmcuwlRlNrPckSBD0AfnM8-Huko'
+            //'x-api-key':'d658687' //에러값
         })
         // response는 응답을 받을 것
         // 자바스크립트의 기본원리 
@@ -64,7 +67,10 @@ console.log(document.getElementById("news"))
 
 const getLatestNews = async() => {
     url =  new URL(
-        `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=business&page_size=10`
+        // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=business&page_size=10`
+        // `https://newswebpage.netlify.app/v2/latest_headlines?countries=US&topic=business&page_size=10`
+        // `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/v2/latest_headlines?countries=US&topic=business&page_size=10`
+        `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?countries=US&topic=business&page_size=10`
         ); 
     getNews();
 }
@@ -75,7 +81,9 @@ const getNewsByTopic = async(event) => {
     //console.log('클릭됨', event.target.textContent) //어떤 이벤트가 검색되었는지 검색 textContent = 어떤 태그안에있는 내용만 가지고옴
     let topic = event.target.textContent.toLowerCase()//소문자변환
     url = new URL(
-        `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&page_size=10&topic=${topic}`
+        // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&page_size=10&topic=${topic}`
+        // `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/v2/latest_headlines?countries=US&page_size=10&topic=${topic}`
+        `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?q=${topic}`
         )
     getNews();
 }
@@ -89,7 +97,9 @@ const getNewsByKeyword = async () => {
     //6.데이터 보여주기
     let keyword = document.getElementById('search-input').value;
     url = new URL(
-        `https://api.newscatcherapi.com/v2/search?q=${keyword}&countries=US&page_size=10`
+        // `https://api.newscatcherapi.com/v2/search?q=${keyword}&countries=US&page_size=10`
+        // `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/v2/search?q=${keyword}&countries=US&page_size=10`
+        `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?category=science`
         );
     getNews();
 }
