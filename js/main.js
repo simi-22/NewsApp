@@ -70,7 +70,7 @@ const getLatestNews = async() => {
         // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=business&page_size=10`
         // `https://newswebpage.netlify.app/v2/latest_headlines?countries=US&topic=business&page_size=10`
         // `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/v2/latest_headlines?countries=US&topic=business&page_size=10`
-        `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?countries=US&topic=business&page_size=10`
+        `https://newswebpage.netlify.app/top-headlines?countries=US&topic=business&page_size=10`
         ); 
     getNews();
 }
@@ -83,7 +83,7 @@ const getNewsByTopic = async(event) => {
     url = new URL(
         // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&page_size=10&topic=${topic}`
         // `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/v2/latest_headlines?countries=US&page_size=10&topic=${topic}`
-        `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?q=${topic}`
+        `https://newswebpage.netlify.app/top-headlines?q=${topic}`
         )
     getNews();
 }
@@ -99,7 +99,7 @@ const getNewsByKeyword = async () => {
     url = new URL(
         // `https://api.newscatcherapi.com/v2/search?q=${keyword}&countries=US&page_size=10`
         // `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/v2/search?q=${keyword}&countries=US&page_size=10`
-        `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?category=science`
+        `https://newswebpage.netlify.app/top-headlines?category=science`
         );
     getNews();
 }
