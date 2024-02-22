@@ -5,9 +5,39 @@ let news =[]
 let menu = document.querySelectorAll('.menu li')
 //for문대신 forEach
 menu.forEach(menu => menu.addEventListener('click', (event) => getNewsByTopic(event)))//event같이 넘겨주는 이유 = 누구를 클릭했는지 알기위해
-
 let searchButton = document.getElementById('search-button')
-let  url;
+let url;
+let mMenuButton = document.querySelector('.mobile-menu-btn');
+let mCloseButton = document.querySelector('.mobile-close-btn');
+
+
+
+//모바일 메뉴
+
+const openNav = () => {
+    document.getElementById("mobile-menu").style.width = "350px";
+    document.querySelector("#mobile-menu ul").style.display = "block";
+    mCloseButton.style.display = "block";
+};
+  
+  const closeNav = () => {
+    document.getElementById("mobile-menu").style.width = "0";
+    document.querySelector("#mobile-menu ul").style.display = "none";
+    mCloseButton.style.display = "none";
+};
+
+mMenuButton.addEventListener('click', openNav);
+mCloseButton.addEventListener('click', closeNav);
+
+//검색창
+const openSearchBox = () => {
+    let inputArea = document.getElementById("input-area");
+    if (inputArea.style.display === "inline") {
+      inputArea.style.display = "none";
+    } else {
+      inputArea.style.display = "inline";
+    }
+  };
 
 
 //<<코드 리팩토링>>
@@ -41,7 +71,7 @@ const getNews = async () => {
             if(data.total_hits == 0){
             throw new Error("검색된 결과값이 없습니다")
             } 
-            console.log('받은 데이터는', data)
+            // console.log('받은 데이터는', data)
             news = data.articles; 
             console.log(news)
             render();
@@ -68,8 +98,6 @@ console.log(document.getElementById("news"))
 const getLatestNews = async() => {
     url =  new URL(
         // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=business&page_size=10`
-        // `https://newswebpage.netlify.app/v2/latest_headlines?countries=US&topic=business&page_size=10`
-        // `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/v2/latest_headlines?countries=US&topic=business&page_size=10`
         `https://newswebpage.netlify.app/top-headlines?countries=US&topic=business&page_size=10`
         ); 
     getNews();
@@ -82,7 +110,6 @@ const getNewsByTopic = async(event) => {
     let topic = event.target.textContent.toLowerCase()//소문자변환
     url = new URL(
         // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&page_size=10&topic=${topic}`
-        // `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/v2/latest_headlines?countries=US&page_size=10&topic=${topic}`
         `https://newswebpage.netlify.app/top-headlines?q=${topic}`
         )
     getNews();
@@ -98,7 +125,6 @@ const getNewsByKeyword = async () => {
     let keyword = document.getElementById('search-input').value;
     url = new URL(
         // `https://api.newscatcherapi.com/v2/search?q=${keyword}&countries=US&page_size=10`
-        // `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/v2/search?q=${keyword}&countries=US&page_size=10`
         `https://newswebpage.netlify.app/top-headlines?category=science`
         );
     getNews();
@@ -109,15 +135,18 @@ const getNewsByKeyword = async () => {
 const render = () => {
     let newsHTML = ''
     //array function (map의 결과값은 array)
+    // <img src="${item.media}" alt="">
+    //<p>${item.summary}</p>
+    //<div>${item.rights}*${item.published_date}</div>
     newsHTML = news.map((item) => {
        return `<div class="news-box">
                 <div class="news-img">
-                    <img src="${item.media}" alt="">
+                    <img src="${item.urlToImage}" alt="">
                 </div>
                 <div class="news-content">
                     <h2>${item.title}</h2>
-                    <p>${item.summary}</p>
-                    <div>${item.rights}*${item.published_date}</div>
+                    <p>${item.description}</p>
+                    <div>${item.author}*${item.publishedAt}</div>
                 </div>
             </div>`
     }).join();

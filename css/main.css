@@ -3,64 +3,126 @@ a{text-decoration: none; color: inherit;}
 li{list-style: none;}
 
 #container{
-max-width: 1200px;
-margin: 0 auto;
-padding: 0 20px;
-box-sizing: border-box;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
 }
 
 .title{
-    margin-top: 1em;
+    padding: 50px 0 20px 0;
     text-align: center;
+    box-sizing: border-box;
 }
 .title svg{
    max-width: 430px;
 }
 
-nav{
-    width: 100%;
-    margin-top: 10px;
-    font-size: 12.5px;
-    border-top: 1px solid #e2e2e2;
+#input-section {
+    position: absolute;
+    top: 20px;
+    right: 20px;
 }
-nav ul{
+#input-area {
+    display: none;
+}
+
+/* pc버전 메뉴 */
+/* pc버전 메뉴 */
+#pc-nav{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 14px;
+    border-top: 1px solid #e2e2e2;
 }
-nav ul li{
-    height: 35px;
-    line-height: 35px;
+#pc-nav ul{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-sizing: border-box;
 }
-nav ul li:hover a{
+#pc-nav ul li{
+    margin-right: 10px;
+}
+
+#pc-nav ul.pc-menu li{
+}
+#pc-nav ul li:hover a{
     background-color: #e2e2e2;
 }
-nav ul li:nth-of-type(16){
+#pc-nav ul.pc-menu1{
+    flex-wrap: wrap;
     padding-right: 10px;
 }
-nav ul li:nth-of-type(17){
+#pc-nav ul.pc-menu1{
     position: relative;
     padding-left: 10px;
     box-sizing: border-box;
 }
-nav ul li:nth-of-type(17)::after{
+#pc-nav ul.pc-menu1::after{
     position: absolute;
     content: "";
-    top: 5px;
-    left: -5px;
+    top: 7px;
+    right: 0;
     height: 20px;
     width: 1px;
     background-color: #ccc;
 }
-.menu{
-    
+
+/* 모바일 메뉴 */
+/* 모바일 메뉴 */
+.mobile-menu-btn {
+    position: absolute;
+    display: none;
+    top: 20px;
+    left: 20px;
+    font-size: 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.mobile-close-btn{
+    position: fixed;
+    display: none;
+    top: 15px;
+    left: 310px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
+#mobile-menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100vh;
+    padding: 0;
+    padding-top: 0px;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 18px;
+    transition: 0.2s;
+}
+#mobile-menu ul{
+    display: none;
+    padding: 40px;
+    padding-top: 50px;
+    box-sizing: border-box;
+}
+#mobile-menu ul li {
+    margin-bottom: 10px;
+}
+#mobile-menu ul li:hover {
+    color: #ccc;
 }
 
-.menu2 li{
-    padding-right: 10px;
-}
 
-
+/* 뉴스컨텐츠 */
+/* 뉴스컨텐츠 */
 #news{
     border-top: 1px solid black;
 
@@ -85,9 +147,11 @@ nav ul li:nth-of-type(17)::after{
     height: 100%;
 }
 #news .news-box .news-content{
-    
     width: 70%;
 }
-#news .news-box .news-content h2{}
-#news .news-box .news-content p{}
-#news .news-box .news-content div{}
+
+
+@media (max-width : 1020px) {
+    #pc-nav { display: none;}
+    .mobile-menu-btn {display: block;}
+}
