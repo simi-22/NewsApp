@@ -98,7 +98,7 @@ console.log(document.getElementById("news"))
 const getLatestNews = async() => {
     url =  new URL(
         // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=business&page_size=10`
-        `https://newswebpage.netlify.app/top-headlines?countries=US&topic=business&page_size=10`
+        `https://newswebpage.netlify.app/top-headlines?country=kr`
         ); 
     getNews();
 }
@@ -110,7 +110,7 @@ const getNewsByTopic = async(event) => {
     let topic = event.target.textContent.toLowerCase()//소문자변환
     url = new URL(
         // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&page_size=10&topic=${topic}`
-        `https://newswebpage.netlify.app/top-headlines?q=${topic}`
+        `https://newswebpage.netlify.app/top-headlines?country=kr&category=${category}`
         )
     getNews();
 }
@@ -125,7 +125,7 @@ const getNewsByKeyword = async () => {
     let keyword = document.getElementById('search-input').value;
     url = new URL(
         // `https://api.newscatcherapi.com/v2/search?q=${keyword}&countries=US&page_size=10`
-        `https://newswebpage.netlify.app/top-headlines?category=science`
+        `https://newswebpage.netlify.app/top-headlines?country=kr&q=${keyword}`
         );
     getNews();
 }
