@@ -31,14 +31,21 @@ mCloseButton.addEventListener('click', closeNav);
 
 //검색창
 const openSearchBox = () => {
-    let inputArea = document.getElementById("input-area");
+    let inputArea = document.querySelector(".input-area");
     if (inputArea.style.display === "inline") {
       inputArea.style.display = "none";
     } else {
       inputArea.style.display = "inline";
     }
   };
-
+  const openSearchBox2 = () => {
+    let inputArea = document.querySelector(".input-area2");
+    if (inputArea.style.display === "inline") {
+      inputArea.style.display = "none";
+    } else {
+      inputArea.style.display = "inline";
+    }
+  };
 
 //<<코드 리팩토링>>
 //각 함수에서 다른 것 = url
@@ -105,15 +112,21 @@ const getLatestNews = async() => {
 
 //주제별 뉴스
 //event는 addEventListener가 주는 모든 정보를 담아다 줌
-const getNewsByTopic = async(event) => {
-    //console.log('클릭됨', event.target.textContent) //어떤 이벤트가 검색되었는지 검색 textContent = 어떤 태그안에있는 내용만 가지고옴
-    let topic = event.target.textContent.toLowerCase()//소문자변환
-    url = new URL(
-        // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&page_size=10&topic=${topic}`
-        `https://newswebpage.netlify.app/top-headlines?country=kr&category=${category}`
-        )
+// const getNewsByCategory = async(event) => {
+//     console.log('클릭됨', event.target.textContent) //어떤 이벤트가 검색되었는지 검색 textContent = 어떤 태그안에있는 내용만 가지고옴
+//     let category = event.target.textContent.toLowerCase()//소문자변환
+//     url = new URL(
+//         // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&page_size=10&topic=${topic}`
+//         `https://newswebpage.netlify.app/top-headlines?country=kr&category=${category}`
+//         )
+//     getNews();
+// }
+const getNewsByTopic = async (event) => {
+    const Topic = event.target.textContent.toLowerCase();
+    url = new URL(`https://newswebpage.netlify.app/top-headlines?country=kr&category=${Topic}`)
     getNews();
 }
+
 
 const getNewsByKeyword = async () => {
     //1.검색키워드 읽어오기
@@ -140,8 +153,9 @@ const render = () => {
     //<div>${item.rights}*${item.published_date}</div>
     newsHTML = news.map((item) => {
        return `<div class="news-box">
-                <div class="news-img">
-                    <img src="${item.urlToImage}" alt="">
+                <div class="news-img" style="background: url(${item.urlToImage}); background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;">
                 </div>
                 <div class="news-content">
                     <h2>${item.title}</h2>
