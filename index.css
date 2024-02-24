@@ -249,6 +249,9 @@ body {
     margin-bottom: 20px;
     margin-right: 20px;
 }
+.news-img img {
+    width: 100%;
+}
 
 .news-box:nth-of-type(3) {
     flex-direction: column;
@@ -268,6 +271,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    width: 100%;
 }
 .news-content div h2 {
     font-size: 21px;

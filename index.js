@@ -164,9 +164,8 @@ const render = () => {
     //<div>${item.rights}*${item.published_date}</div>
     newsHTML = news.map((item) => {
        return   `<div class="news-box">
-                    <div class="news-img" style="background: url(${item.urlToImage}); background-position: center;
-                    background-repeat: no-repeat;
-                    background-size: 100% 100%;">
+                    <div class="news-img">
+                        <img src="${item.urlToImage}" alt="${item.title}의 이미지" />
                     </div>
                     <div class="news-content">
                         <div>
