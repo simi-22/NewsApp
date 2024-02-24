@@ -116,7 +116,7 @@ console.log(document.getElementById("news"))
 const getLatestNews = async() => {
     url =  new URL(
         // `https://api.newscatcherapi.com/v2/latest_headlines?countries=US&topic=business&page_size=10`
-        `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?country=kr`
+        `hhttps://newswebpage.netlify.app/top-headlines?country=kr`
         ); 
     getNews();
 }
@@ -134,7 +134,7 @@ const getLatestNews = async() => {
 // }
 const getNewsByTopic = async (event) => {
     const Topic = event.target.textContent.toLowerCase();
-    url = new URL(`http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?country=kr&category=${Topic}`);
+    url = new URL(`https://newswebpage.netlify.app/top-headlines?country=kr&category=${Topic}`);
     getNews();
 }
 
@@ -149,7 +149,7 @@ const getNewsByKeyword = async () => {
     let keyword = document.getElementById('search-input').value;
     url = new URL(
         // `https://api.newscatcherapi.com/v2/search?q=${keyword}&countries=US&page_size=10`
-        `http://times-node-env.eba-appvq3ef.ap-northeast-2.elasticbeanstalk.com/top-headlines?country=kr&q=${keyword}`
+        `https://newswebpage.netlify.app/top-headlines?country=kr&q=${keyword}`
         );
     getNews();
 }
