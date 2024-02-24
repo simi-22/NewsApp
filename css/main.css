@@ -1,6 +1,27 @@
-*{margin: 0; padding: 0;}
-a{text-decoration: none; color: inherit;}
-li{list-style: none;}
+
+@font-face {
+    font-family: 'Chosunilbo_myungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0; 
+    padding: 0;
+}
+a {
+    text-decoration: none; 
+    color: inherit;
+}
+li{
+    list-style: none;
+}
+body {
+    font-family: 'Chosunilbo_myungjo';
+}
+
+
 
 /* #container{
     position: relative;
@@ -41,7 +62,16 @@ li{list-style: none;}
     flex-wrap: wrap;
     margin-top: 10px;
     font-size: 14px;
-    border-top: 1px solid #e2e2e2;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid black;
+    padding: 2px 0;
+}
+#pc-nav::after{
+    content: "";
+    border-bottom: 1px double black;
+    display: block;
+    width: 100%;
+    height: 1px;
 }
 #pc-nav ul{
     display: flex;
@@ -129,7 +159,6 @@ li{list-style: none;}
 /* 뉴스컨텐츠 */
 /* 뉴스컨텐츠 */
 #news{
-    border-top: 1px solid black;
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 20px;
@@ -146,7 +175,8 @@ li{list-style: none;}
 }
 
 #news .news-box .news-img{
-    width: 30%;
+    width: 40%;
+    height: 180px;
     box-sizing: border-box;
 }
 #news .news-box .news-img img{
@@ -158,8 +188,20 @@ li{list-style: none;}
     padding-left: 20px;
     box-sizing: border-box;
 }
+#news .news-box .news-content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+#news .news-box .news-content p {
+    margin-bottom: 10px;
+}
+#news .news-box .news-content div {
+    font-size: 12px;
+}
 
 
+
+/* 반응형 */
 @media (max-width : 1020px) {
     #pc-nav { display: none;}
     .mobile-menu-btn {display: block;}
@@ -174,5 +216,11 @@ li{list-style: none;}
     }
     #mobile .title svg {
         max-width: 300px;
+    }
+}
+
+@media (max-width : 760px) {
+    #news .news-box .news-img{
+        width: 50%;
     }
 }

@@ -155,7 +155,7 @@ const render = () => {
        return `<div class="news-box">
                 <div class="news-img" style="background: url(${item.urlToImage}); background-position: center;
                 background-repeat: no-repeat;
-                background-size: cover;">
+                background-size: contain;">
                 </div>
                 <div class="news-content">
                     <h2>${item.title}</h2>
@@ -163,7 +163,7 @@ const render = () => {
                     <div>${item.author}*${item.publishedAt}</div>
                 </div>
             </div>`
-    }).join();
+    }).join('');
     document.getElementById("news").innerHTML = newsHTML;
    
 }
