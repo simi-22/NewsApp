@@ -9,6 +9,11 @@ let searchButton = document.getElementById('search-button')
 let url;
 let mMenuButton = document.querySelector('.mobile-menu-btn');
 let mCloseButton = document.querySelector('.mobile-close-btn');
+//pagination
+let totalResults = 0;
+let page = 1;
+const pageSize = 10;
+const groupSize = 5;
 
 
 
@@ -68,20 +73,26 @@ const getNews = async () => {
             //'x-api-key':'OlUv0q7jdM962bqVqmcuwlRlNrPckSBD0AfnM8-Huko'
             //'x-api-key':'d658687' //에러값
         })
+
+        url.searchParams.set("page",page); // &page = page
+        url.searchParams.set("pageSize",pageSize);
         // response는 응답을 받을 것
         // 자바스크립트의 기본원리 
         let response = await fetch(url,{headers:header}); //데이터 전송 방법 = ajax, axios, fetch
         //response에서 데이터 뽑아냄//json = 서버통신에서 많이쓰이는 자료형 타입
         //data에서 json 추출
         let data = await response.json();
+        //console.log(data) totalResult 검색해봄
         if(response.status == 200){
             if(data.total_hits == 0){
             throw new Error("검색된 결과값이 없습니다")
             } 
             // console.log('받은 데이터는', data)
-            news = data.articles; 
-            console.log(news)
+            news = data.articles;
+            totalResults = data.totalResults;
+            //console.log(news)
             render();
+            paginationRender();
         }else{
             throw new Error(data.message)
         }
@@ -152,22 +163,68 @@ const render = () => {
     //<p>${item.summary}</p>
     //<div>${item.rights}*${item.published_date}</div>
     newsHTML = news.map((item) => {
-       return `<div class="news-box">
-                <div class="news-img" style="background: url(${item.urlToImage}); background-position: center;
-                background-repeat: no-repeat;
-                background-size: contain;">
-                </div>
-                <div class="news-content">
-                    <h2>${item.title}</h2>
-                    <p>${item.description}</p>
-                    <div>${item.author}*${item.publishedAt}</div>
-                </div>
-            </div>`
+       return   `<div class="news-box">
+                    <div class="news-img" style="background: url(${item.urlToImage}); background-position: center;
+                    background-repeat: no-repeat;
+                    background-size: 100% 100%;">
+                    </div>
+                    <div class="news-content">
+                        <div>
+                            <h2><a href="${item.url}">${item.title}</a></h2>
+                            <p>${item.description}</p>
+                        </div>
+                        <div>${item.author}/ ${item.publishedAt}</div>
+                    </div>
+                </div>`
     }).join('');
     document.getElementById("news").innerHTML = newsHTML;
    
 }
 
+searchButton.addEventListener('click', getNewsByKeyword);
 
-searchButton.addEventListener('click', getNewsByKeyword)
+const paginationRender = () => {
+   //totalResult = getNews 할때마다 data에 totalResult라는 값이 들어있음 / 196
+   //page
+   //pageSize
+   //totalPages
+   const totalPages = Math.ceil(totalResults / pageSize);
+   //groupSize 몇개씩 보여줄지
+   //pageGroup 내가 몇번째 그룹에 속해있는지
+   const pageGroup = Math.ceil(page / groupSize); //올림
+   //lastPage 마지막 페이지 그룹이 그룹사이즈보다 작으면 마지막page = totalPage
+   let lastPage = pageGroup * groupSize;
+    if(lastPage > totalPages) {
+        lastPage = totalPages;
+    }
+   //firstPage
+   const firstPage = lastPage - (groupSize - 1) <= 0 ? 1 : lastPage - (groupSize - 1);
+
+    let paginationHTML = ``;
+
+    for (let i = firstPage; i <= lastPage; i++){
+        paginationHTML += `<li class="page-item" onClick="moveToPage(${i})"><a class="page-link">${i}</a></li>`
+    }
+    document.querySelector('.pagination').innerHTML = paginationHTML;
+}
+
+const moveToPage = (pageNum) => {
+    page = pageNum;
+    getNews();
+}
+
+{/* <nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link">Previous</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Next</a>
+    </li>
+  </ul>
+</nav> */}
+
 getLatestNews()
