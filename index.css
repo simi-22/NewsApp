@@ -1,0 +1,373 @@
+
+@font-face {
+    font-family: 'Chosunilbo_myungjo';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/Chosunilbo_myungjo.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0; 
+    padding: 0;
+}
+a {
+    text-decoration: none; 
+    color: inherit;
+}
+ul{
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+body {
+    font-family: 'Chosunilbo_myungjo';
+}
+
+
+
+/* #container{
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+} */
+
+.title{
+    padding: 50px 0 20px 0;
+    text-align: center;
+    box-sizing: border-box;
+}
+.title svg{
+   max-width: 430px;
+}
+#pc{
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    box-sizing: border-box;
+}
+#pc #input-section {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+#pc .input-area {
+    display: none;
+}
+
+/* pc버전 메뉴 */
+/* pc버전 메뉴 */
+#pc-nav{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 14px;
+    border-top: 1px solid #ebebeb;
+    border-bottom: 1px solid black;
+    padding: 2px 0;
+}
+#pc-nav::after{
+    content: "";
+    border-bottom: 1px double black;
+    display: block;
+    width: 100%;
+    height: 1px;
+}
+#pc-nav ul{
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    box-sizing: border-box;
+}
+#pc-nav ul li{
+    margin-right: 10px;
+}
+
+#pc-nav ul.pc-menu li{
+}
+#pc-nav ul li:hover a{
+    background-color: #e2e2e2;
+}
+#pc-nav ul.pc-menu1{
+    flex-wrap: wrap;
+    padding-right: 10px;
+}
+#pc-nav ul.pc-menu1{
+    position: relative;
+    padding-left: 10px;
+    box-sizing: border-box;
+}
+
+/* 모바일 메뉴 */
+/* 모바일 메뉴 */
+
+#mobile{
+    display: none;
+    padding: 20px 20px;
+    box-sizing: border-box;
+}
+.mobile-menu-btn {
+    display: none;
+    font-size: 30px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+.mobile-close-btn{
+    position: fixed;
+    display: none;
+    top: 15px;
+    left: 310px;
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    z-index: 101;
+}
+#mobile-menu{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    padding: 0;
+    padding-top: 0px;
+    background-color: rgb(0, 0, 0);
+    color: #fff;
+    font-size: 18px;
+    transition: 0.2s;
+    z-index: 100;
+}
+#mobile-menu ul{
+    display: none;
+    padding: 40px;
+    padding-top: 50px;
+    box-sizing: border-box;
+}
+#mobile-menu ul li {
+    margin-bottom: 10px;
+}
+#mobile-menu ul li:hover {
+    color: #ccc;
+}
+#mobile .input-area2 {
+    display: none;
+}
+.searchbtn {
+    font-size: 25px;
+}
+
+
+/* 뉴스컨텐츠 */
+/* 뉴스컨텐츠 */
+/* #news{
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+
+}
+#news .news-box{
+    display: flex;
+    width: 100%;
+    padding: 10px;
+    overflow: hidden;
+    box-sizing: border-box;
+    border-bottom: 1px solid #e2e2e2;
+}
+
+#news .news-box .news-img{
+    width: 40%;
+    height: 180px;
+    box-sizing: border-box;
+}
+#news .news-box .news-img img{
+    width: 100%;
+    height: 100%;
+}
+#news .news-box .news-content{
+    width: 70%;
+    padding-left: 20px;
+    box-sizing: border-box;
+}
+#news .news-box .news-content h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+#news .news-box .news-content p {
+    margin-bottom: 10px;
+}
+#news .news-box .news-content div {
+    font-size: 12px;
+} */
+
+
+.grid-container {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.grid-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: calc(50%);
+    height: 100%;
+    width: 1px;
+    background-color: #ebebeb;
+  }
+.news-box {
+    position: relative;
+    display: flex;
+    height: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+}
+.news-box::after {
+    content: '';
+    position: absolute;
+    bottom: -15px; 
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background-color: #ebebeb;
+  }
+
+.news-img {
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+
+.news-box:nth-of-type(3) {
+    flex-direction: column;
+    grid-row: 2/4;
+}
+/* .news-box:nth-of-type(2) .news-img {
+    width: 100%;
+    height: 200px;
+    margin-right: 20px;
+} */
+.news-box:nth-of-type(6) {
+    flex-direction: column;
+    grid-row: 4/6;
+}
+
+.news-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.news-content div h2 {
+    font-size: 21px;
+    margin-bottom: 10px;
+}
+.news-content div h2:hover {
+    text-decoration: underline;
+}
+.news-content div:nth-of-type(2) {
+    font-size: 14px;
+}
+.news-content > div {
+    align-self: flex-end;
+    justify-self: flex-end;
+}
+
+
+
+/* 반응형 */
+@media (max-width : 1020px) {
+    #pc-nav { display: none;}
+    .mobile-menu-btn {display: block;}
+    #pc{
+        display: none;
+    }
+    .title { 
+        padding-bottom: 5px;
+    }
+    #mobile {
+        display: flex;
+    }
+    #mobile .title{
+        flex: 1;
+    }
+    #mobile .title svg {
+        max-width: 300px;
+    }
+}
+@media (max-width : 950px) {
+    .grid-container {
+        grid-template-columns: repeat(1, 1fr);
+        gap: 20px;
+        max-width: 900px;
+        padding: 10px;
+    }
+    .grid-container::before {
+        width: 0;
+      }
+      .news-box:nth-of-type(3) {
+        flex-direction: row;
+        grid-row: 3/4;
+    }
+    .news-box:nth-of-type(6) {
+        flex-direction: row;
+        grid-row: 7/8;
+    }
+}
+@media (max-width : 760px) {
+    #news .news-box .news-img{
+        width: 50%;
+    }
+}
+@media (max-width : 580px) {
+    #mobile {
+        border-bottom: 1px solid #ccc;
+      }
+    .grid-container {
+        max-width: 500px;
+    }
+    .news-box {
+        position: relative;
+        display: flex;
+        flex-direction: column !important;
+        align-items: center;
+        height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+    }
+    .news-img {
+        width: 100%;
+        height: 100px;
+        background-size: cover;
+        margin-bottom: 20px;
+        margin-right: 20px;
+    }
+    .news-box div h2 {
+        font-size: 18px;
+    }
+    .news-box div:nth-of-type(1) {
+        font-size: 14px;
+    }
+    .news-box div:nth-of-type(2) {
+        font-size: 12px;
+    }
+    .news-box::after {
+        content: '';
+        position: absolute;
+        bottom: -10px; 
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background-color: #ccc;
+      }
+    }
