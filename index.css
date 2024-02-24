@@ -84,6 +84,7 @@ body {
 }
 #pc-nav ul li{
     margin-right: 10px;
+    cursor: pointer;
 }
 
 #pc-nav ul.pc-menu li{
@@ -284,6 +285,17 @@ body {
 }
 
 
+.pagination {
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.pagination li {
+    cursor: pointer;
+}
+.pagination li a {
+    color: black;
+}
+
 
 /* 반응형 */
 @media (max-width : 1020px) {
@@ -341,6 +353,7 @@ body {
         display: flex;
         flex-direction: column !important;
         align-items: center;
+        max-width: 450px;
         height: 100%;
         padding: 10px;
         box-sizing: border-box;
