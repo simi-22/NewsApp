@@ -151,9 +151,10 @@ const getNewsByKeyword = async () => {
     //5.데이터 가져오기
     //6.데이터 보여주기
     let keyword = document.getElementById('search-input').value;
+    let keyword2 = document.getElementById('search-input2').value;
     url = new URL(
         // `https://api.newscatcherapi.com/v2/search?q=${keyword}&countries=US&page_size=10`
-        `https://newsappweb.netlify.app/top-headlines?country=kr&q=${keyword}`
+        `https://newsappweb.netlify.app/top-headlines?country=kr&q=${keyword || keyword2}`
         );
     getNews();
 }
