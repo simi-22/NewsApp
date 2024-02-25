@@ -8,7 +8,8 @@ menu.forEach(menu => menu.addEventListener('click', (event) => getNewsByTopic(ev
 let searchButton = document.getElementById('search-button')
 let url;
 let mMenuButton = document.querySelector('.mobile-menu-btn');
-let mCloseButton = document.querySelector('.mobile-close-btn');
+let isMenuOpen = false; //메뉴가 열려있는지 확인하는 변수
+
 //pagination
 let totalResults = 0;
 let page = 1;
@@ -20,19 +21,22 @@ const groupSize = 5;
 //모바일 메뉴
 
 const openNav = () => {
-    document.getElementById("mobile-menu").style.width = "350px";
-    document.querySelector("#mobile-menu ul").style.display = "block";
-    mCloseButton.style.display = "block";
+    if (!isMenuOpen) { // 메뉴가 열려있지 않은 경우
+        document.getElementById("mobile-menu").style.width = "350px";
+        document.querySelector("#mobile-menu ul").style.display = "block";
+        isMenuOpen = true; // 메뉴를 열었으므로 상태를 열린 상태로 변경
+    } else { // 메뉴가 열려있는 경우
+        closeNav(); // 메뉴를 닫는 함수 호출
+    }
 };
   
-  const closeNav = () => {
+const closeNav = () => {
     document.getElementById("mobile-menu").style.width = "0";
     document.querySelector("#mobile-menu ul").style.display = "none";
-    mCloseButton.style.display = "none";
+    isMenuOpen = false; // 메뉴를 닫았으므로 상태를 닫힌 상태로 변경
 };
 
 mMenuButton.addEventListener('click', openNav);
-mCloseButton.addEventListener('click', closeNav);
 
 //검색창
 const openSearchBox = () => {
