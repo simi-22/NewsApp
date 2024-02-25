@@ -20,6 +20,7 @@ const groupSize = 5;
 
 //모바일 메뉴
 
+
 const openNav = () => {
     if (!isMenuOpen) { // 메뉴가 열려있지 않은 경우
         document.getElementById("mobile-menu").style.width = "350px";
@@ -55,6 +56,35 @@ const openSearchBox = () => {
       inputArea.style.display = "inline";
     }
   };
+
+  document.addEventListener('click', function(event) {
+    const searchInput = document.getElementById('search-input2');
+    if (event.target !== searchInput) {
+        reversePushSearch();
+    }
+  });
+
+  const pushSearch = () => {
+    let pushArea = document.querySelector('.input-area2 span');
+    let resetButton = document.querySelector('.input-area2 button:first-of-type')
+    pushArea.style.bottom = "30px";
+    pushArea.style.fontSize = "15px";
+    resetButton.style.opacity = "100%";
+  };
+
+
+const reversePushSearch = () => {
+    let pushArea = document.querySelector('.input-area2 span');
+    let resetButton = document.querySelector('.input-area2 button:first-of-type')
+    pushArea.style.bottom = "14px"; // Reverse the bottom positioning
+    pushArea.style.fontSize = "inherit"; // Revert font size to default
+    resetButton.style.opacity = "0%"; // Hide the reset button
+};
+
+  const resetSearchBox = () => {
+    let searchInput2 = document.querySelector('#search-input2');
+    searchInput2.value = "";
+  }
 
 //<<코드 리팩토링>>
 //각 함수에서 다른 것 = url
@@ -185,7 +215,19 @@ const render = () => {
    
 }
 
-searchButton.addEventListener('click', getNewsByKeyword);
+// searchButton.addEventListener('click', getNewsByKeyword);
+
+document.getElementById('search-input').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        getNewsByKeyword();
+    }
+});
+
+document.getElementById('search-input2').addEventListener('keydown', function(event) {
+    if (event.key === 'Enter') {
+        getNewsByKeyword();
+    }
+});
 
 const paginationRender = () => {
    //totalResult = getNews 할때마다 data에 totalResult라는 값이 들어있음 / 196
